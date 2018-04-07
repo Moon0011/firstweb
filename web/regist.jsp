@@ -13,10 +13,15 @@
     <script>
         $(function () {
             $("#mail_name").blur(function () {
-                alert("mail blur");
                 var mail = $(this).val();
                 $.get("regist.do", {mailname: mail}, function (data) {
-                    alert("12312313");
+                    if (data == "YES") {
+                        $("#mail_name").next("span").remove();
+                        $("#mail_name").after("<span style='color: orangered'>邮箱可以使用</span>");
+                    } else {
+                        $("#mail_name").next("span").remove();
+                        $("#mail_name").after("<span style='color: orangered'>邮箱不可使用</span>");
+                    }
                 });
             });
         });

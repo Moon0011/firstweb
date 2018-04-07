@@ -12,18 +12,18 @@ import java.io.PrintWriter;
 public class TestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
-        System.out.println("TestServlet doget");
+        req.setCharacterEncoding("utf-8");
         String mailname = req.getParameter("mailname");
         System.out.println("mailname = " + mailname);
         String result = "";
         if ("123@qq.com".equals(mailname)) {
-            result = "邮箱已注册";
+            result = "YES";
         } else {
-            result = "邮箱可以使用";
+            result = "NO";
         }
         PrintWriter pw = resp.getWriter();
         pw.write(result);
+//        pw.print(result);
     }
 
     @Override
